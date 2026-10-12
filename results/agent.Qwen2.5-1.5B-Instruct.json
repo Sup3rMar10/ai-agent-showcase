@@ -1,0 +1,514 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "summary": {
+    "n_tasks": 16,
+    "accuracy": 0.625,
+    "used_expected_tools": 0.625,
+    "finished_rate": 1.0,
+    "avg_steps": 2.5625,
+    "avg_errors_per_task": 0.375,
+    "avg_seconds_per_task": 79.2,
+    "by_category": {
+      "calc": {
+        "n": 4,
+        "accuracy": 0.25
+      },
+      "date": {
+        "n": 3,
+        "accuracy": 0.0
+      },
+      "filter": {
+        "n": 3,
+        "accuracy": 1.0
+      },
+      "lookup": {
+        "n": 4,
+        "accuracy": 1.0
+      },
+      "not-found": {
+        "n": 2,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "tasks": [
+    {
+      "id": "t01",
+      "category": "lookup",
+      "question": "What is the amount of invoice INV-1005?",
+      "answer": "The amount of invoice INV-1005 is $15,200.00.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "lookup_invoice"
+      ],
+      "used_expected_tools": true,
+      "seconds": 65.6,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1005\"}}",
+          "observation": "{\"id\": \"INV-1005\", \"customer\": \"Umbrella Ltd\", \"amount\": 15200.0, \"status\": \"paid\", \"issued\": \"2026-06-30\", \"due\": \"2026-07-30\"}",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"The amount of invoice INV-1005 is $15,200.00.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t02",
+      "category": "lookup",
+      "question": "Which customer is invoice INV-1008 for?",
+      "answer": "Invoice INV-1008 is for Hooli.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "lookup_invoice"
+      ],
+      "used_expected_tools": true,
+      "seconds": 50.4,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1008\"}}",
+          "observation": "{\"id\": \"INV-1008\", \"customer\": \"Hooli\", \"amount\": 7800.0, \"status\": \"open\", \"issued\": \"2026-09-28\", \"due\": \"2026-10-28\"}",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"Invoice INV-1008 is for Hooli.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t03",
+      "category": "lookup",
+      "question": "What is the due date of INV-1003?",
+      "answer": "The due date of INV-1003 is 2026-10-05.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "lookup_invoice"
+      ],
+      "used_expected_tools": true,
+      "seconds": 54.4,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1003\"}}",
+          "observation": "{\"id\": \"INV-1003\", \"customer\": \"Initech\", \"amount\": 975.5, \"status\": \"open\", \"issued\": \"2026-09-05\", \"due\": \"2026-10-05\"}",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"The due date of INV-1003 is 2026-10-05.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t04",
+      "category": "lookup",
+      "question": "What is the status of INV-1006?",
+      "answer": "INV-1006 is disputed.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "lookup_invoice"
+      ],
+      "used_expected_tools": true,
+      "seconds": 51.3,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1006\"}}",
+          "observation": "{\"id\": \"INV-1006\", \"customer\": \"Globex\", \"amount\": 620.0, \"status\": \"disputed\", \"issued\": \"2026-09-10\", \"due\": \"2026-10-10\"}",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"INV-1006 is disputed.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t05",
+      "category": "filter",
+      "question": "How many invoices are currently open?",
+      "answer": "There are 4 invoices currently open.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 3,
+      "n_errors": 1,
+      "tools_called": [
+        "list_invoices"
+      ],
+      "used_expected_tools": true,
+      "seconds": 75.2,
+      "trace": [
+        {
+          "raw": "{\"action\": \"list_invoices\", \"args\": {\"status\": \"open\"}}",
+          "observation": "[{\"id\": \"INV-1002\", \"customer\": \"Globex\", \"amount\": 4800.0, \"status\": \"open\"}, {\"id\": \"INV-1003\", \"customer\": \"Initech\", \"amount\": 975.5, \"status\": \"open\"}, {\"id\": \"INV-1004\", \"customer\": \"Acme Corp\", \"amount\": 2300.0, \"status\": \"open\"}, {\"id\": \"INV-1008\", \"customer\": \"Hooli\", \"amount\": 7800.0, \"sta",
+          "ok": true
+        },
+        {
+          "raw": "There are 4 invoices currently open.",
+          "observation": "Error: reply contained no JSON object. Reply with one JSON object such as {\"action\": \"final\", \"answer\": \"...\"}.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"There are 4 invoices currently open.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t06",
+      "category": "filter",
+      "question": "Which customers have a disputed invoice?",
+      "answer": "There are two customers who have disputed invoices: Globex with an amount of $620.00 and Acme Corp with an amount of $410.25.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 3,
+      "n_errors": 1,
+      "tools_called": [
+        "list_invoices"
+      ],
+      "used_expected_tools": true,
+      "seconds": 111.3,
+      "trace": [
+        {
+          "raw": "{\"action\": \"list_invoices\", \"args\": {\"status\": \"disputed\"}}",
+          "observation": "[{\"id\": \"INV-1006\", \"customer\": \"Globex\", \"amount\": 620.0, \"status\": \"disputed\"}, {\"id\": \"INV-1009\", \"customer\": \"Acme Corp\", \"amount\": 410.25, \"status\": \"disputed\"}]",
+          "ok": true
+        },
+        {
+          "raw": "There are two customers who have disputed invoices: Globex with an amount of $620.00 and Acme Corp with an amount of $410.25.",
+          "observation": "Error: reply contained no JSON object. Reply with one JSON object such as {\"action\": \"final\", \"answer\": \"...\"}.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"There are two customers who have disputed invoices: Globex with an amount of $620.00 and Acme Corp with an amount of $410.25.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t07",
+      "category": "filter",
+      "question": "How many invoices does Acme Corp have in total?",
+      "answer": "Acme Corp has 3 invoices in total.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "list_invoices"
+      ],
+      "used_expected_tools": true,
+      "seconds": 46.0,
+      "trace": [
+        {
+          "raw": "{\n  \"action\": \"list_invoices\",\n  \"args\": {\n    \"customer\": \"Acme Corp\"\n  }\n}",
+          "observation": "[{\"id\": \"INV-1001\", \"customer\": \"Acme Corp\", \"amount\": 1250.0, \"status\": \"paid\"}, {\"id\": \"INV-1004\", \"customer\": \"Acme Corp\", \"amount\": 2300.0, \"status\": \"open\"}, {\"id\": \"INV-1009\", \"customer\": \"Acme Corp\", \"amount\": 410.25, \"status\": \"disputed\"}]",
+          "ok": true
+        },
+        {
+          "raw": "{\n  \"action\": \"final\",\n  \"answer\": \"Acme Corp has 3 invoices in total.\"\n}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t08",
+      "category": "calc",
+      "question": "What is the total amount of all open invoices?",
+      "answer": "The total amount of all open invoices is $15,875.50.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 3,
+      "n_errors": 0,
+      "tools_called": [
+        "list_invoices",
+        "calculator"
+      ],
+      "used_expected_tools": true,
+      "seconds": 122.2,
+      "trace": [
+        {
+          "raw": "{\n  \"action\": \"list_invoices\",\n  \"args\": {\n    \"status\": \"open\"\n  }\n}",
+          "observation": "[{\"id\": \"INV-1002\", \"customer\": \"Globex\", \"amount\": 4800.0, \"status\": \"open\"}, {\"id\": \"INV-1003\", \"customer\": \"Initech\", \"amount\": 975.5, \"status\": \"open\"}, {\"id\": \"INV-1004\", \"customer\": \"Acme Corp\", \"amount\": 2300.0, \"status\": \"open\"}, {\"id\": \"INV-1008\", \"customer\": \"Hooli\", \"amount\": 7800.0, \"sta",
+          "ok": true
+        },
+        {
+          "raw": "{\n  \"action\": \"calculator\",\n  \"args\": {\n    \"expression\": \"4800.0 + 975.5 + 2300.0 + 7800.0\"\n  }\n}",
+          "observation": "15875.5",
+          "ok": true
+        },
+        {
+          "raw": "{\n  \"action\": \"final\",\n  \"answer\": \"The total amount of all open invoices is $15,875.50.\"\n}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t09",
+      "category": "calc",
+      "question": "If a 15% late fee is added to INV-1004, how much is the fee?",
+      "answer": "The late fee on INV-1004 is $357.00.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 3,
+      "n_errors": 0,
+      "tools_called": [
+        "lookup_invoice",
+        "calculator"
+      ],
+      "used_expected_tools": true,
+      "seconds": 105.9,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1004\"}}",
+          "observation": "{\"id\": \"INV-1004\", \"customer\": \"Acme Corp\", \"amount\": 2300.0, \"status\": \"open\", \"issued\": \"2026-08-25\", \"due\": \"2026-09-24\"}",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"calculator\", \"args\": {\"expression\": \"2300.0 * 0.15 + 12.0\"}}",
+          "observation": "357",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"The late fee on INV-1004 is $357.00.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t10",
+      "category": "calc",
+      "question": "What is the combined amount of INV-1001 and INV-1007?",
+      "answer": "There are no invoices associated with XYZ Corp.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "list_invoices"
+      ],
+      "used_expected_tools": false,
+      "seconds": 49.8,
+      "trace": [
+        {
+          "raw": "{\"action\": \"list_invoices\", \"args\": {\"customer\": \"XYZ Corp\"}}",
+          "observation": "[]",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"There are no invoices associated with XYZ Corp.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t11",
+      "category": "calc",
+      "question": "What is the average amount of the paid invoices?",
+      "answer": "The average amount of the paid invoices is $25390.00.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 3,
+      "n_errors": 0,
+      "tools_called": [
+        "list_invoices",
+        "calculator"
+      ],
+      "used_expected_tools": true,
+      "seconds": 100.6,
+      "trace": [
+        {
+          "raw": "{\n  \"action\": \"list_invoices\",\n  \"args\": {\n    \"status\": \"paid\"\n  }\n}",
+          "observation": "[{\"id\": \"INV-1001\", \"customer\": \"Acme Corp\", \"amount\": 1250.0, \"status\": \"paid\"}, {\"id\": \"INV-1005\", \"customer\": \"Umbrella Ltd\", \"amount\": 15200.0, \"status\": \"paid\"}, {\"id\": \"INV-1007\", \"customer\": \"Initech\", \"amount\": 3340.0, \"status\": \"paid\"}, {\"id\": \"INV-1010\", \"customer\": \"Hooli\", \"amount\": 5600",
+          "ok": true
+        },
+        {
+          "raw": "{\n  \"action\": \"calculator\",\n  \"args\": {\n    \"expression\": \"1250.0 + 15200.0 + 3340.0 + 5600.0\"\n  }\n}",
+          "observation": "25390",
+          "ok": true
+        },
+        {
+          "raw": "{\n  \"action\": \"final\",\n  \"answer\": \"The average amount of the paid invoices is $25390.00.\"\n}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t12",
+      "category": "date",
+      "question": "As of 2026-10-12, how many days past its due date is INV-1004?",
+      "answer": "INV-1004 has not yet reached its due date.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 4,
+      "n_errors": 1,
+      "tools_called": [
+        "list_invoices",
+        "days_between"
+      ],
+      "used_expected_tools": false,
+      "seconds": 129.1,
+      "trace": [
+        {
+          "raw": "{\"action\": \"list_invoices\", \"args\": {\"status\": \"open\", \"customer\": \"XYZ Corp\"}}",
+          "observation": "[]",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"days_between\", \"args\": {\"start\": \"-2026-10-12\", \"end\": \"-2026-10-12\"}}",
+          "observation": "Error: dates must look like YYYY-MM-DD.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"days_between\", \"args\": {\"start\": \"2026-10-12\", \"end\": \"2026-10-12\"}}",
+          "observation": "0",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"INV-1004 has not yet reached its due date.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t13",
+      "category": "date",
+      "question": "As of 2026-10-12, how many days past its due date is INV-1003?",
+      "answer": "INV-1003 has not yet been issued.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 4,
+      "n_errors": 1,
+      "tools_called": [
+        "list_invoices",
+        "days_between"
+      ],
+      "used_expected_tools": false,
+      "seconds": 123.1,
+      "trace": [
+        {
+          "raw": "{\"action\": \"list_invoices\", \"args\": {\"status\": \"open\", \"customer\": \"XYZ Corp\"}}",
+          "observation": "[]",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"days_between\", \"args\": {\"start\": \"-2026-10-12\", \"end\": \"-2026-10-12\"}}",
+          "observation": "Error: dates must look like YYYY-MM-DD.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"days_between\", \"args\": {\"start\": \"2026-10-12\", \"end\": \"2026-10-12\"}}",
+          "observation": "0",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"INV-1003 has not yet been issued.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t14",
+      "category": "date",
+      "question": "Counting from 2026-10-12, how many days until INV-1008 is due?",
+      "answer": "INV-1008 is already due today.",
+      "correct": false,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 0,
+      "tools_called": [
+        "days_between"
+      ],
+      "used_expected_tools": false,
+      "seconds": 44.5,
+      "trace": [
+        {
+          "raw": "{\"action\": \"days_between\", \"args\": {\"start\": \"2026-10-12\", \"end\": \"2026-10-12\"}}",
+          "observation": "0",
+          "ok": true
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"INV-1008 is already due today.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t15",
+      "category": "not-found",
+      "question": "What is the amount of invoice INV-2000?",
+      "answer": "There is no invoice with ID INV-2000.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 1,
+      "tools_called": [],
+      "used_expected_tools": false,
+      "seconds": 64.5,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-2000\"}}",
+          "observation": "Error: no invoice with id INV-2000.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"There is no invoice with ID INV-2000.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "id": "t16",
+      "category": "not-found",
+      "question": "Which customer is invoice INV-1042 for?",
+      "answer": "Invoice INV-1042 does not exist.",
+      "correct": true,
+      "finished": true,
+      "n_steps": 2,
+      "n_errors": 1,
+      "tools_called": [],
+      "used_expected_tools": false,
+      "seconds": 73.3,
+      "trace": [
+        {
+          "raw": "{\"action\": \"lookup_invoice\", \"args\": {\"invoice_id\": \"INV-1042\"}}",
+          "observation": "Error: no invoice with id INV-1042.",
+          "ok": false
+        },
+        {
+          "raw": "{\"action\": \"final\", \"answer\": \"Invoice INV-1042 does not exist.\"}",
+          "observation": "",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}

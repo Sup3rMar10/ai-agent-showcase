@@ -1,0 +1,16 @@
+{"id": "t01", "category": "lookup", "question": "What is the amount of invoice INV-1005?", "expect": ["15200"], "expect_any": [], "must_call": ["lookup_invoice"]}
+{"id": "t02", "category": "lookup", "question": "Which customer is invoice INV-1008 for?", "expect": ["Hooli"], "expect_any": [], "must_call": ["lookup_invoice"]}
+{"id": "t03", "category": "lookup", "question": "What is the due date of INV-1003?", "expect": ["2026-10-05"], "expect_any": [], "must_call": ["lookup_invoice"]}
+{"id": "t04", "category": "lookup", "question": "What is the status of INV-1006?", "expect": ["disputed"], "expect_any": [], "must_call": ["lookup_invoice"]}
+{"id": "t05", "category": "filter", "question": "How many invoices are currently open?", "expect": ["4"], "expect_any": [], "must_call": ["list_invoices"]}
+{"id": "t06", "category": "filter", "question": "Which customers have a disputed invoice?", "expect": ["Acme Corp", "Globex"], "expect_any": [], "must_call": ["list_invoices"]}
+{"id": "t07", "category": "filter", "question": "How many invoices does Acme Corp have in total?", "expect": ["3"], "expect_any": [], "must_call": ["list_invoices"]}
+{"id": "t08", "category": "calc", "question": "What is the total amount of all open invoices?", "expect": ["15875.5"], "expect_any": [], "must_call": ["list_invoices", "calculator"]}
+{"id": "t09", "category": "calc", "question": "If a 15% late fee is added to INV-1004, how much is the fee?", "expect": ["345"], "expect_any": [], "must_call": ["lookup_invoice", "calculator"]}
+{"id": "t10", "category": "calc", "question": "What is the combined amount of INV-1001 and INV-1007?", "expect": ["4590"], "expect_any": [], "must_call": ["lookup_invoice", "calculator"]}
+{"id": "t11", "category": "calc", "question": "What is the average amount of the paid invoices?", "expect": ["6347.5"], "expect_any": [], "must_call": ["list_invoices", "calculator"]}
+{"id": "t12", "category": "date", "question": "As of 2026-10-12, how many days past its due date is INV-1004?", "expect": ["18"], "expect_any": [], "must_call": ["lookup_invoice", "days_between"]}
+{"id": "t13", "category": "date", "question": "As of 2026-10-12, how many days past its due date is INV-1003?", "expect": ["7"], "expect_any": [], "must_call": ["lookup_invoice", "days_between"]}
+{"id": "t14", "category": "date", "question": "Counting from 2026-10-12, how many days until INV-1008 is due?", "expect": ["16"], "expect_any": [], "must_call": ["lookup_invoice", "days_between"]}
+{"id": "t15", "category": "not-found", "question": "What is the amount of invoice INV-2000?", "expect": [], "expect_any": ["not found", "no invoice", "does not exist", "doesn't exist", "no record", "not exist", "could not find", "couldn't find", "cannot find", "can't find", "unable to find"], "must_call": ["lookup_invoice"]}
+{"id": "t16", "category": "not-found", "question": "Which customer is invoice INV-1042 for?", "expect": [], "expect_any": ["not found", "no invoice", "does not exist", "doesn't exist", "no record", "not exist", "could not find", "couldn't find", "cannot find", "can't find", "unable to find"], "must_call": ["lookup_invoice"]}

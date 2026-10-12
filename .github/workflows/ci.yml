@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Lint + tests + task-file check (no GPU, no model downloads)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-ci.txt
+      - run: ruff check .
+      - run: pytest -q
+      - name: Committed tasks match the generator
+        run: |
+          python -m src.tasks
+          git diff --exit-code data/tasks.jsonl

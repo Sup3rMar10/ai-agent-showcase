@@ -1,0 +1,3 @@
+# Light set used by CI: no torch, no model downloads
+pytest
+ruff

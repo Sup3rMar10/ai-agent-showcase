@@ -1,0 +1,12 @@
+[
+  {"id": "INV-1001", "customer": "Acme Corp", "amount": 1250.00, "status": "paid", "issued": "2026-08-01", "due": "2026-08-31"},
+  {"id": "INV-1002", "customer": "Globex", "amount": 4800.00, "status": "open", "issued": "2026-08-20", "due": "2026-09-19"},
+  {"id": "INV-1003", "customer": "Initech", "amount": 975.50, "status": "open", "issued": "2026-09-05", "due": "2026-10-05"},
+  {"id": "INV-1004", "customer": "Acme Corp", "amount": 2300.00, "status": "open", "issued": "2026-08-25", "due": "2026-09-24"},
+  {"id": "INV-1005", "customer": "Umbrella Ltd", "amount": 15200.00, "status": "paid", "issued": "2026-06-30", "due": "2026-07-30"},
+  {"id": "INV-1006", "customer": "Globex", "amount": 620.00, "status": "disputed", "issued": "2026-09-10", "due": "2026-10-10"},
+  {"id": "INV-1007", "customer": "Initech", "amount": 3340.00, "status": "paid", "issued": "2026-07-15", "due": "2026-08-14"},
+  {"id": "INV-1008", "customer": "Hooli", "amount": 7800.00, "status": "open", "issued": "2026-09-28", "due": "2026-10-28"},
+  {"id": "INV-1009", "customer": "Acme Corp", "amount": 410.25, "status": "disputed", "issued": "2026-09-30", "due": "2026-10-30"},
+  {"id": "INV-1010", "customer": "Hooli", "amount": 5600.00, "status": "paid", "issued": "2026-08-05", "due": "2026-09-04"}
+]
